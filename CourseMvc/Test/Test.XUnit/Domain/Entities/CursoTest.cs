@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using ExpectedObjects;
+using Xunit;
 
 namespace Test.XUnit.Domain.Entities
 {
@@ -8,19 +9,24 @@ namespace Test.XUnit.Domain.Entities
         public void TestDeveCriarCurso()
         {
             //Cenario            
-            const string nome = "Informática Básica";
-            const double cargaHoraria = 40;
-            const string publicoAlvo = "Estudante";
-            const double valor = 199;
+            var cursoEsperado = new
+            {
+                Nome = "Informática Básica",
+                CargaHoraria = (double)40,
+                PublicoAlvo = "Estudante",
+                Valor = (double)169
+            };
 
             //Acao
-            var curso = new Curso(nome, cargaHoraria, publicoAlvo, valor);
+            var curso = new Curso(cursoEsperado.Nome, cursoEsperado.CargaHoraria, cursoEsperado.PublicoAlvo, cursoEsperado.Valor);
 
             //Verificacao
-            Assert.Equal(nome, curso.Nome);
-            Assert.Equal(cargaHoraria, curso.CargaHoraria);
-            Assert.Equal(publicoAlvo, curso.PublicoAlvo);
-            Assert.Equal(valor, curso.Valor);
+            //Assert.Equal(nome, curso.Nome);
+            //Assert.Equal(cargaHoraria, curso.CargaHoraria);
+            //Assert.Equal(publicoAlvo, curso.PublicoAlvo);
+            //Assert.Equal(valor, curso.Valor);
+
+            cursoEsperado.ToExpectedObject().ShouldMatch(curso);
         }
     }
 
