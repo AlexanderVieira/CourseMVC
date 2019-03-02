@@ -13,7 +13,7 @@ namespace Test.XUnit.Domain.Entities
             {
                 Nome = "Informática Básica",
                 CargaHoraria = (double)40,
-                PublicoAlvo = "Estudante",
+                PublicoAlvo = PublicoAlvo.Estudante,
                 Valor = (double)169
             };
 
@@ -30,9 +30,17 @@ namespace Test.XUnit.Domain.Entities
         }
     }
 
+    public enum PublicoAlvo
+    {
+        Estudante,
+        Universitario,
+        Empregado,
+        Empreendedor
+    }
+
     public class Curso
     {
-        public Curso(string nome, double cargaHoraria, string publicoAlvo, double valor)
+        public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valor)
         {
             Nome = nome;
             CargaHoraria = cargaHoraria;
@@ -42,7 +50,7 @@ namespace Test.XUnit.Domain.Entities
 
         public string Nome { get; private set; }
         public double CargaHoraria { get; private set; }
-        public string PublicoAlvo { get; private set; }
+        public PublicoAlvo PublicoAlvo { get; private set; }
         public double Valor { get; private set; }
     }
 }
